@@ -1,6 +1,10 @@
 package pe.com.isesystem.siscopetarifario.service;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pe.com.isesystem.siscopetarifario.dto.SemanaDTO;
 import pe.com.isesystem.siscopetarifario.model.Semana;
@@ -10,7 +14,9 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SemanaService {
@@ -20,6 +26,13 @@ public class SemanaService {
     public SemanaService(SemanaRepository semanaRepository, ModelMapper modelMapper){
         this.semanaRepository = semanaRepository;
         this.modelMapper = modelMapper;
+    }
+
+    public Page<SemanaDTO> getAllSemana(int pag, int tot){
+        final Pageable pageable = PageRequest.of(pag, tot );
+        Page<Semana> p = semanaRepository.findAll(pageable);
+        List<SemanaDTO> l = p.getContent().stream().map((element) -> modelMapper.map(element, SemanaDTO.class)).toList();
+        return new PageImpl<>(l, p.getPageable(), p.getTotalElements());
     }
 
     public SemanaDTO ultimaSemanaActiva(){

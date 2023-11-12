@@ -1,6 +1,8 @@
 package pe.com.isesystem.siscopetarifario.repository;
 
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.FluentQuery;
@@ -26,4 +28,7 @@ public interface SemanaRepository extends JpaRepository<Semana, Long> {
 
     @Override
     Optional<Semana> findById(Long aLong);
+
+    @Override
+    Page<Semana> findAll(Pageable pageable);
 }
