@@ -35,26 +35,32 @@ public class SemanaService {
             return new SemanaDTO();
     }
 
-    public SemanaDTO saveSemana(String fecha){
-        LocalDate localDate;
-        SemanaDTO sDTO = new SemanaDTO();
-        //Creo una fecha a partir del numero
-        if(fecha.trim().length() != 8)
-            return sDTO;
-        else{
-            localDate = LocalDate.of(Integer.parseInt(fecha.substring(0,4)),
-                    Integer.parseInt(fecha.substring(4,6)),
-                    Integer.parseInt(fecha.substring(6)));
+    public SemanaDTO buscaSemana(Long idSemana){
+        Optional<Semana> s = this.semanaRepository.findById(idSemana);
+        if (s.isPresent()){
+            return modelMapper.map(s.get(), SemanaDTO.class);
         }
-        int anio = Integer.parseInt(fecha.substring(0,4));
-        int numeroSemana = localDate.get(WeekFields.of(java.util.Locale.getDefault()).weekOfWeekBasedYear());
+        return new SemanaDTO();
+    }
+    public SemanaDTO saveSemana(SemanaDTO semana){
+        Semana s = modelMapper.map(semana, Semana.class);
+        Semana sResp = this.semanaRepository.save(s);
+        return modelMapper.map(sResp, SemanaDTO.class);
+    }
 
-        LocalDate primerDiaSemana = LocalDate.of(anio, 1, 1)  // Puedes usar cualquier fecha del año
+
+    public SemanaDTO getSemanaActual(){
+        SemanaDTO sDTO = new SemanaDTO();
+        LocalDate localDate = LocalDate.now();
+
+        int anio = localDate.getYear();
+        int numeroSemana = localDate.get(WeekFields.of(java.util.Locale.getDefault()).weekOfWeekBasedYear()) - 1;
+
+        LocalDate primerDiaSemana = LocalDate.of(anio, 1, 1)
                 .with(TemporalAdjusters.firstDayOfYear())
                 .plusWeeks(numeroSemana )
                 .with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
 
-        // Obtener la fecha del último día (domingo) de la semana
         LocalDate ultimoDiaSemana = primerDiaSemana.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
 
         sDTO.setEstado(true);

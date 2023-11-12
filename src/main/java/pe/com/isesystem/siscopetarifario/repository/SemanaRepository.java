@@ -1,13 +1,16 @@
 package pe.com.isesystem.siscopetarifario.repository;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.data.repository.query.Param;
 import org.springframework.lang.NonNullApi;
 import org.springframework.stereotype.Repository;
 import pe.com.isesystem.siscopetarifario.model.Semana;
 
 import java.util.Optional;
+import java.util.function.Function;
 
 @Repository
 public interface SemanaRepository extends JpaRepository<Semana, Long> {
@@ -20,4 +23,7 @@ public interface SemanaRepository extends JpaRepository<Semana, Long> {
 
     @Override
     <S extends Semana> S save(S entity);
+
+    @Override
+    Optional<Semana> findById(Long aLong);
 }

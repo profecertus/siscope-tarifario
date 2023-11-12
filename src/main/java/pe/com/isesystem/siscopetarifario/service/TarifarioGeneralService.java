@@ -21,19 +21,17 @@ public class TarifarioGeneralService {
         this.semanaService = semanaService;
     }
 
-    public List<TarifarioGeneralDTO> getAllTarifarioGeneral(Long idAnio) {
-        List<TarifarioGeneral> lista = this.tarifarioGeneralRepository.findAllById_IdAnio(idAnio);
+    public List<TarifarioGeneralDTO> getAllTarifarioGeneral(SemanaDTO semana) {
+        List<TarifarioGeneral> lista = this.tarifarioGeneralRepository.findAllById_IdAnio(semana.getId());
         return lista.stream().map((element) -> modelMapper.map(element, TarifarioGeneralDTO.class)).toList();
     }
 
-    public int cargarProductos(String fecha){
-        //Validar si existe la semana para esta fecha en particular
-        SemanaDTO s = this.semanaService.semanaDeLaFecha(fecha);
-        //Si la semana no existe lo creo
-        if (s.getId() == null){
-            s = this.semanaService.saveSemana(fecha);
-        }
+    public int cargarProductos(SemanaDTO semana){
+        //creo la semana si no existe
+        SemanaDTO semanaDTO = semanaService.buscaSemana(semana.getId());
+        if (semanaDTO.getId() == null)
+            semanaService.saveSemana(semana);
 
-        return this.tarifarioGeneralRepository.createNewWeek(s.getId().toString());
+        return this.tarifarioGeneralRepository.createNewWeek(semana.getId().toString());
     }
 }

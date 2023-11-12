@@ -20,7 +20,11 @@ public class SemanaController {
 
     @GetMapping("/semanaPorFecha/{fecha}")
     public ResponseEntity<SemanaDTO> getWeekforDate(@PathVariable String fecha ){
-        System.out.println(fecha);
         return new ResponseEntity<>(semanaService.semanaDeLaFecha(fecha), HttpStatus.OK);
+    }
+
+    @GetMapping("/semanaActual")
+    public ResponseEntity<SemanaDTO> getSemanaActual(){
+        return new ResponseEntity<>( semanaService.getSemanaActual(), HttpStatus.OK );
     }
 }
