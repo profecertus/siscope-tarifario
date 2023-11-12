@@ -12,8 +12,8 @@ import lombok.*;
 @Setter
 public class TarifarioGeneralDTO implements Serializable{
     private TarifarioGeneralIdDTO id;
-    private ProveedorDTO proveedor;
-    private TipoServicioDTO Servicio;
+    private ProveedorDTO idProveedor;
+    private TipoServicioDTO idTipoServicio;
     private MonedaDTO idMoneda;
     private BigDecimal monto;
     private Boolean estado;
