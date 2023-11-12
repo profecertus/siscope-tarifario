@@ -18,7 +18,7 @@ public class TarifarioGeneralController {
     @Autowired
     TarifarioGeneralService tarifarioGeneralService;
 
-    @GetMapping("/getAllTarifario{fecha}")
+    @GetMapping("/getAllTarifario/{fecha}")
     public ResponseEntity<List<TarifarioGeneralDTO>> getAllTarifario(@PathVariable String fecha){
         return new ResponseEntity<>(this.tarifarioGeneralService.getAllTarifarioGeneral(Long.parseLong(fecha)), HttpStatus.OK);
     }
