@@ -1,7 +1,5 @@
 package pe.com.isesystem.siscopetarifario.controller;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +26,11 @@ public class TarifarioGeneralController {
     public ResponseEntity<Integer> createWeek(@RequestBody SemanaDTO semana){
         int valor = this.tarifarioGeneralService.cargarProductos(semana);
         return  new ResponseEntity<>(valor, HttpStatus.OK);
+    }
+
+    @PostMapping("/saveTarifa")
+    public  ResponseEntity<TarifarioGeneralDTO> saveTarifa(@RequestBody TarifarioGeneralDTO tarifarioGeneralDTO){
+        return new ResponseEntity<>(tarifarioGeneralService.grabarTarifa(tarifarioGeneralDTO), HttpStatus.OK);
     }
 
 }

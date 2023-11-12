@@ -34,4 +34,9 @@ public class TarifarioGeneralService {
 
         return this.tarifarioGeneralRepository.createNewWeek(semana.getId().toString());
     }
+
+    public TarifarioGeneralDTO grabarTarifa(TarifarioGeneralDTO tarifarioGeneralDTO){
+        TarifarioGeneral t = tarifarioGeneralRepository.save( modelMapper.map(tarifarioGeneralDTO, TarifarioGeneral.class) );
+        return modelMapper.map(t, TarifarioGeneralDTO.class);
+    }
 }
