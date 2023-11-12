@@ -13,15 +13,13 @@ spring:
       idle-timeout: 30000 # 30 segundos en milisegundos
       connection-timeout: 5000 # 5 segundos en milisegundos
       max-lifetime: 1800000 # 30 minutos en milisegundos
+      connection-test-query: SELECT 1
 
   jpa:
     hibernate:
       ddl-auto: none
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-app:
-  ws:
-    version: 1

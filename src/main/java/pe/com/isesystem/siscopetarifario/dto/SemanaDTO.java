@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class SemanaDTO implements Serializable{
-    private Long idAnio;
+    private Long id;
     private Long fechaInicio;
     private Long fechaFin;
     private String tipoSemana;
