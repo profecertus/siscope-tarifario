@@ -1,10 +1,11 @@
 package pe.com.isesystem.siscopetarifario.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,11 +15,16 @@ import java.util.Objects;
 @Embeddable
 public class TarifarioGeneralId implements Serializable {
     private static final long serialVersionUID = -6456738410721960318L;
-    @Column(name = "id_proveedor", nullable = false)
-    private Integer idProveedor;
 
-    @Column(name = "id_tipo_servicio", nullable = false)
-    private Integer idTipoServicio;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "id_proveedor", nullable = false)
+    private Proveedor idProveedor;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "id_tipo_servicio", nullable = false)
+    private TipoServicio idTipoServicio;
 
     @Column(name = "id_anio", nullable = false)
     private Integer idAnio;

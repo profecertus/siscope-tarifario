@@ -15,17 +15,8 @@ import java.math.BigDecimal;
 public class TarifarioGeneral {
     @EmbeddedId
     private TarifarioGeneralId id;
-/*
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "id_proveedor", nullable = false)
-    private Proveedor idProveedor;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.RESTRICT)
-    @JoinColumn(name = "id_tipo_servicio", nullable = false)
-    private TipoServicio tipoServicio;
-*/
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "ID_MONEDA", nullable = false)
