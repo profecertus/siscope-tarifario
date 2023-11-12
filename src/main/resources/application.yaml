@@ -4,8 +4,8 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://69.164.197.95:5432/SISCOPE
-    username: postgres
-    password: postgres
+    username: siscope-tarifario
+    password: 515c0p3
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 5
