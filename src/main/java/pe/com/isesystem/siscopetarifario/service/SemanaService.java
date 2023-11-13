@@ -65,9 +65,9 @@ public class SemanaService {
     public SemanaDTO getSemanaActual(){
         SemanaDTO sDTO = new SemanaDTO();
         LocalDate localDate = LocalDate.now();
-
+        //System.out.println(LocalDate.now());
         int anio = localDate.getYear();
-        int numeroSemana = localDate.get(WeekFields.of(java.util.Locale.getDefault()).weekOfWeekBasedYear()) - 1;
+        int numeroSemana = localDate.get(WeekFields.of(java.util.Locale.getDefault()).weekOfWeekBasedYear()) ;
 
         LocalDate primerDiaSemana = LocalDate.of(anio, 1, 1)
                 .with(TemporalAdjusters.firstDayOfYear())
