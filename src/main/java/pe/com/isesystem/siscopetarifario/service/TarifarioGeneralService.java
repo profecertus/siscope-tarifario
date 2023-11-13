@@ -1,8 +1,10 @@
 package pe.com.isesystem.siscopetarifario.service;
 
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import pe.com.isesystem.siscopetarifario.model.TarifarioGeneral;
+import pe.com.isesystem.siscopetarifario.repository.MonedaRepository;
 import pe.com.isesystem.siscopetarifario.repository.TarifarioGeneralRepository;
 import pe.com.isesystem.siscopetarifario.dto.*;
 
@@ -13,12 +15,14 @@ public class TarifarioGeneralService {
     private final ModelMapper modelMapper;
     private final TarifarioGeneralRepository tarifarioGeneralRepository;
     private final SemanaService semanaService;
+    private final MonedaRepository monedaRepository;
 
     public TarifarioGeneralService(ModelMapper modelMapper, TarifarioGeneralRepository tarifarioGeneralRepository,
-                                   SemanaService semanaService) {
+                                   SemanaService semanaService, MonedaRepository monedaRepository) {
         this.modelMapper = modelMapper;
         this.tarifarioGeneralRepository = tarifarioGeneralRepository;
         this.semanaService = semanaService;
+        this.monedaRepository = monedaRepository;
     }
 
     public List<TarifarioGeneralDTO> getAllTarifarioGeneral(SemanaDTO semana) {
@@ -36,7 +40,8 @@ public class TarifarioGeneralService {
     }
 
     public TarifarioGeneralDTO grabarTarifa(TarifarioGeneralDTO tarifarioGeneralDTO){
-        TarifarioGeneral t = tarifarioGeneralRepository.save( modelMapper.map(tarifarioGeneralDTO, TarifarioGeneral.class) );
+        TarifarioGeneral tg = modelMapper.map(tarifarioGeneralDTO, TarifarioGeneral.class);
+        TarifarioGeneral t = tarifarioGeneralRepository.save( tg );
         return modelMapper.map(t, TarifarioGeneralDTO.class);
     }
 }

@@ -15,6 +15,8 @@ import java.util.List;
 public interface TarifarioGeneralRepository extends JpaRepository<TarifarioGeneral, TarifarioGeneralId> {
     <S extends TarifarioGeneral> List<S> findAllById_IdAnio(Long IdAnio);
 
+    @Override
+    <S extends TarifarioGeneral> S save(S entity);
 
     @Modifying
     @Transactional

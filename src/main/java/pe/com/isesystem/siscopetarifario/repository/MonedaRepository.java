@@ -6,4 +6,6 @@ import pe.com.isesystem.siscopetarifario.model.Moneda;
 
 @Repository
 public interface MonedaRepository extends JpaRepository<Moneda, Long> {
+    @Override
+    <S extends Moneda> S save(S entity);
 }

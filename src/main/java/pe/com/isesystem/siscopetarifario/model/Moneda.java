@@ -15,7 +15,7 @@ import org.hibernate.annotations.Nationalized;
 public class Moneda {
     @Id
     @Column(name = "ID_MONEDA", nullable = false)
-    private Long id;
+    private Long idMoneda;
 
     @Column(name = "NOMBRE", length = 20)
     private String nombre;
