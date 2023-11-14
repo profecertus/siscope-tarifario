@@ -4,31 +4,28 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString(onlyExplicitlyIncluded = true)
-@Entity(name = "Semana")
-@Table(name = "SEMANA")
+@Entity
+@Table(name = "semana")
 public class Semana {
     @Id
-    @Column(name = "ID_ANIO", nullable = false)
-    private Long id;
+    @Column(name = "id_semana", nullable = false)
+    private Integer id;
 
-    @Column(name = "FECHA_INICIO", nullable = false)
-    private Long fechaInicio;
+    @Column(name = "fecha_inicio", nullable = false)
+    private Integer fechaInicio;
 
-    @Column(name = "FECHA_FIN", nullable = false)
-    private Long fechaFin;
+    @Column(name = "fecha_fin", nullable = false)
+    private Integer fechaFin;
 
-    @Column(name = "TIPO_SEMANA", nullable = false)
+    @Column(name = "tipo_semana", nullable = false, length = Integer.MAX_VALUE)
     private String tipoSemana;
 
-    @Column(name = "ESTADO", nullable = false)
+    @Column(name = "estado")
     private Boolean estado;
 
 }

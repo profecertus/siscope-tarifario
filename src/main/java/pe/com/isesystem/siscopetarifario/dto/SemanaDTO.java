@@ -1,5 +1,4 @@
 package pe.com.isesystem.siscopetarifario.dto;
-
 import lombok.*;
 
 import java.io.Serializable;
@@ -9,11 +8,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-public class SemanaDTO implements Serializable{
-    private Long id;
+public class SemanaDTO implements Serializable {
+    private Long idSemana;
     private Long fechaInicio;
     private Long fechaFin;
     private String tipoSemana;
     private Boolean estado;
-
 }

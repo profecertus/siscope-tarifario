@@ -11,5 +11,5 @@ import lombok.*;
 public class TarifarioGeneralIdDTO implements  Serializable{
     private Integer idProveedor;
     private Integer idTipoServicio;
-    private Integer idAnio;
+    private Integer idDia;
 }

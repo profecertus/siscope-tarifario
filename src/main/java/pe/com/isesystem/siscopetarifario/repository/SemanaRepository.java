@@ -1,16 +1,14 @@
 package pe.com.isesystem.siscopetarifario.repository;
 
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.data.repository.query.Param;
-import org.springframework.lang.NonNullApi;
 import org.springframework.stereotype.Repository;
 import pe.com.isesystem.siscopetarifario.model.Semana;
 
+import java.util.Date;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -31,4 +29,10 @@ public interface SemanaRepository extends JpaRepository<Semana, Long> {
 
     @Override
     Page<Semana> findAll(Pageable pageable);
+
+    @Query(value = "SELECT CURRENT_TIMESTAMP AT TIME ZONE 'America/Lima'", nativeQuery = true)
+    Date getAhora();
+
+    @Query(value = "SELECT CAST(TO_CHAR( CURRENT_TIMESTAMP AT TIME ZONE 'America/Lima', 'YYYYMMDD') AS NUMERIC )", nativeQuery = true)
+    Long getFecha();
 }

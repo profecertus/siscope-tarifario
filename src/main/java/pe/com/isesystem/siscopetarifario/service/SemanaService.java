@@ -6,26 +6,28 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import pe.com.isesystem.siscopetarifario.dto.DiaSemanaDTO;
 import pe.com.isesystem.siscopetarifario.dto.SemanaDTO;
+import pe.com.isesystem.siscopetarifario.model.DiaSemana;
 import pe.com.isesystem.siscopetarifario.model.Semana;
+import pe.com.isesystem.siscopetarifario.repository.DiaSemanaRepository;
 import pe.com.isesystem.siscopetarifario.repository.SemanaRepository;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
-import java.time.temporal.WeekFields;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class SemanaService {
     private final SemanaRepository semanaRepository;
     private final ModelMapper modelMapper;
+    private final DiaSemanaRepository diaSemanaRepository;
 
-    public SemanaService(SemanaRepository semanaRepository, ModelMapper modelMapper){
+    public SemanaService(SemanaRepository semanaRepository, ModelMapper modelMapper,
+                         DiaSemanaRepository diaSemanaRepository){
         this.semanaRepository = semanaRepository;
         this.modelMapper = modelMapper;
+        this.diaSemanaRepository = diaSemanaRepository;
     }
 
     public Page<SemanaDTO> getAllSemana(int pag, int tot){
@@ -34,6 +36,23 @@ public class SemanaService {
         List<SemanaDTO> l = p.getContent().stream().map((element) -> modelMapper.map(element, SemanaDTO.class)).toList();
         return new PageImpl<>(l, p.getPageable(), p.getTotalElements());
     }
+
+    public Date getFechaActual(){
+        return semanaRepository.getAhora();
+    }
+
+    public Long getFecha(){
+        return semanaRepository.getFecha();
+    }
+
+    public DiaSemanaDTO getDiaSemana(Long idDiaSemana){
+        Optional<DiaSemana> diaSemana = this.diaSemanaRepository.findById(idDiaSemana);
+        if (diaSemana.isPresent())
+            return modelMapper.map(diaSemana, DiaSemanaDTO.class);
+        else
+            return new DiaSemanaDTO();
+    }
+
 
     public SemanaDTO ultimaSemanaActiva(){
         Optional<Semana> s = this.semanaRepository.getLastWeekSave();
@@ -62,32 +81,12 @@ public class SemanaService {
     }
 
 
-    public SemanaDTO getSemanaActual(){
-        SemanaDTO sDTO = new SemanaDTO();
-        LocalDate localDate = LocalDate.now();
-        //System.out.println(LocalDate.now());
-        int anio = localDate.getYear();
-        int numeroSemana = localDate.get(WeekFields.of(java.util.Locale.getDefault()).weekOfWeekBasedYear()) ;
-
-        LocalDate primerDiaSemana = LocalDate.of(anio, 1, 1)
-                .with(TemporalAdjusters.firstDayOfYear())
-                .plusWeeks(numeroSemana )
-                .with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-
-        LocalDate ultimoDiaSemana = primerDiaSemana.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-
-        sDTO.setEstado(true);
-        sDTO.setId((long) (anio * 100 + numeroSemana));
-        sDTO.setTipoSemana("O");
-        sDTO.setFechaInicio((long) (primerDiaSemana.getYear() * 10000 +
-                primerDiaSemana.getMonthValue() * 100 +
-                primerDiaSemana.getDayOfMonth()));
-        sDTO.setFechaFin((long) (ultimoDiaSemana.getYear() * 10000 +
-                ultimoDiaSemana.getMonthValue() * 100 +
-                ultimoDiaSemana.getDayOfMonth()));
-        Semana s = modelMapper.map(sDTO, Semana.class);
-        Semana sResp = this.semanaRepository.save(s);
-        return modelMapper.map(sResp, SemanaDTO.class);
+    public DiaSemanaDTO getSemanaActual(){
+        Optional<DiaSemana> ds =  diaSemanaRepository.findById( this.getFecha() );
+        if(ds.isPresent())
+            return this.modelMapper.map(ds.get(), DiaSemanaDTO.class);
+        else
+            return new DiaSemanaDTO();
     }
 
 }

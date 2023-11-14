@@ -1,21 +1,21 @@
 package pe.com.isesystem.siscopetarifario.dto;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
-
 import lombok.*;
+
+import java.io.Serializable;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class TarifarioGeneralDTO implements Serializable{
+public class TarifarioGeneralDTO implements  Serializable{
     private TarifarioGeneralIdDTO id;
     private ProveedorDTO idProveedor;
     private TipoServicioDTO idTipoServicio;
+    private DiaSemanaDTO idDia;
     private MonedaDTO idMoneda;
-    private BigDecimal monto;
+    private Number monto;
     private Boolean estado;
     private Boolean estadoReg;
 }

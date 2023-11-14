@@ -14,8 +14,7 @@ import java.util.Objects;
 @Setter
 @Embeddable
 public class TarifarioGeneralId implements Serializable {
-    private static final long serialVersionUID = -6456738410721960318L;
-
+    private static final long serialVersionUID = -6880512574788144923L;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.RESTRICT)
     @JoinColumn(name = "id_proveedor", nullable = false)
@@ -26,22 +25,22 @@ public class TarifarioGeneralId implements Serializable {
     @JoinColumn(name = "id_tipo_servicio", nullable = false)
     private TipoServicio idTipoServicio;
 
-    @Column(name = "id_anio", nullable = false)
-    private Integer idAnio;
+    @Column(name = "id_dia", nullable = false)
+    private Integer idDia;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         TarifarioGeneralId entity = (TarifarioGeneralId) o;
-        return Objects.equals(this.idAnio, entity.idAnio) &&
-                Objects.equals(this.idProveedor, entity.idProveedor) &&
+        return Objects.equals(this.idProveedor, entity.idProveedor) &&
+                Objects.equals(this.idDia, entity.idDia) &&
                 Objects.equals(this.idTipoServicio, entity.idTipoServicio);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAnio, idProveedor, idTipoServicio);
+        return Objects.hash(idProveedor, idDia, idTipoServicio);
     }
 
 }

@@ -5,10 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.com.isesystem.siscopetarifario.dto.DiaSemanaDTO;
 import pe.com.isesystem.siscopetarifario.dto.SemanaDTO;
 import pe.com.isesystem.siscopetarifario.service.SemanaService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/semana/v1")
@@ -27,7 +26,7 @@ public class SemanaController {
     }
 
     @GetMapping("/semanaActual")
-    public ResponseEntity<SemanaDTO> getSemanaActual(){
+    public ResponseEntity<DiaSemanaDTO> getSemanaActual(){
         return new ResponseEntity<>( semanaService.getSemanaActual(), HttpStatus.OK );
     }
 
