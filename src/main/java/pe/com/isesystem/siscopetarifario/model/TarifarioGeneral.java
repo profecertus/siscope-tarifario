@@ -3,6 +3,8 @@ package pe.com.isesystem.siscopetarifario.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.math.BigDecimal;
 
@@ -19,8 +21,10 @@ public class TarifarioGeneral {
     @JoinColumn(name = "id_dia", nullable = false)
     private DiaSemana idDia;
 
-    @Column(name = "id_moneda")
-    private Integer idMoneda;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.RESTRICT)
+    @JoinColumn(name = "id_moneda", nullable = false)
+    private Moneda idMoneda;
 
     @Column(name = "monto", precision = 10, scale = 2)
     private BigDecimal monto;
