@@ -18,8 +18,8 @@ public class TarifarioGeneralController {
     @Autowired
     TarifarioGeneralService tarifarioGeneralService;
 
-    @PostMapping("/getAllTarifario")
-    public ResponseEntity<List<TarifarioGeneralDTO>> getAllTarifario(@RequestBody Long idDiaSemana){
+    @GetMapping("/getAllTarifario/{idDiaSemana}")
+    public ResponseEntity<List<TarifarioGeneralDTO>> getAllTarifario(@PathVariable Long idDiaSemana){
         return new ResponseEntity<>(this.tarifarioGeneralService.getAllTarifarioGeneral(idDiaSemana), HttpStatus.OK);
     }
 
