@@ -20,17 +20,17 @@ public interface TarifarioGeneralRepository extends JpaRepository<TarifarioGener
 
     @Modifying
     @Transactional
-    @Query(value = "INSERT INTO tarifario_general(id_proveedor, id_tipo_servicio, id_dia, monto, estado, estado_reg)\n" +
-            "SELECT id_proveedor, id_tipo_servicio, CAST(:dia AS INTEGER), 0, true, true\n" +
-            "FROM rel_prov_tiposerv\n" +
-            "WHERE estado = true AND estado_reg = true\n" +
-            "  AND NOT EXISTS (\n" +
-            "    SELECT 1\n" +
-            "    FROM tarifario_general\n" +
-            "    WHERE tarifario_general.id_proveedor = rel_prov_tiposerv.id_proveedor\n" +
-            "      AND tarifario_general.id_tipo_servicio = rel_prov_tiposerv.id_tipo_servicio\n" +
-            "      AND tarifario_general.id_dia = CAST(:dia AS INTEGER)\n" +
+    @Query(value = "INSERT INTO TARIFARIO_GENERAL(id_proveedor, id_tipo_servicio, id_dia, id_moneda, monto,estado, estado_reg)\n" +
+            "SELECT ID_PROVEEDOR, id_tipo_servicio, CAST(:dia AS INTEGER), id_moneda, monto,estado, estado_reg\n" +
+            "FROM tarifario_general\n" +
+            "WHERE id_dia in (\n" +
+            "        select id_dia from dia_semana\n" +
+            "        where id_dia < CAST(:dia AS INTEGER) \n" +
+            "        order by id_dia DESC\n" +
+            "        LIMIT 1\n" +
             ")", nativeQuery = true)
     int createTarifas(@Param("dia") String dia);
+
+
 
 }
