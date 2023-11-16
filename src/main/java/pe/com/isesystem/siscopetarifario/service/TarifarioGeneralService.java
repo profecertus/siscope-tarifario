@@ -3,6 +3,7 @@ package pe.com.isesystem.siscopetarifario.service;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import pe.com.isesystem.siscopetarifario.model.TarifarioEmbarcacion;
+import pe.com.isesystem.siscopetarifario.model.TarifarioEmbarcacionId;
 import pe.com.isesystem.siscopetarifario.model.TarifarioGeneral;
 import pe.com.isesystem.siscopetarifario.repository.DiaSemanaRepository;
 import pe.com.isesystem.siscopetarifario.repository.MonedaRepository;
@@ -31,7 +32,7 @@ public class TarifarioGeneralService {
     }
 
     public List<TarifarioEmbarcacionDTO> getAllTarifarioEmbarcacion(Long idDiaSemana) {
-        System.out.println(idDiaSemana);
+        //System.out.println(idDiaSemana);
         List<TarifarioEmbarcacion> lista = this.tarifarioEmbarcacionRepository.findAllById_IdDia( idDiaSemana );
         return lista.stream().map((element) -> modelMapper.map(element, TarifarioEmbarcacionDTO.class)).toList();
     }
@@ -44,5 +45,11 @@ public class TarifarioGeneralService {
         TarifarioGeneral tg = modelMapper.map(tarifarioGeneralDTO, TarifarioGeneral.class);
         TarifarioGeneral t = tarifarioGeneralRepository.save( tg );
         return modelMapper.map(t, TarifarioGeneralDTO.class);
+    }
+
+    public TarifarioEmbarcacionDTO grabarTarifaEmbarcacion(TarifarioEmbarcacionDTO tarifarioEmbarcacionDTO){
+        TarifarioEmbarcacion te = modelMapper.map(tarifarioEmbarcacionDTO, TarifarioEmbarcacion.class);
+        TarifarioEmbarcacion t = tarifarioEmbarcacionRepository.save( te );
+        return modelMapper.map(t, TarifarioEmbarcacionDTO.class);
     }
 }

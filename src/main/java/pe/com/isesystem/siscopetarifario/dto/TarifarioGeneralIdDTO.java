@@ -9,7 +9,8 @@ import lombok.*;
 @Getter
 @Setter
 public class TarifarioGeneralIdDTO implements  Serializable{
-    private Integer idProveedor;
-    private Integer idTipoServicio;
-    private Integer idDia;
+    private Long idProveedor;
+    private Long idTipoServicio;
+    private Long idDia;
+    private Long idEmbarcacion;
 }

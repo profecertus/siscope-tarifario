@@ -21,7 +21,7 @@ public class Embarcacion {
     private Proveedor idProveedor;
 
     @Column(name = "nombre", length = 100)
-    private String nombre;
+    private String nombreEmbarcacion;
 
     @Column(name = "num_matricula", length = 50)
     private String numMatricula;

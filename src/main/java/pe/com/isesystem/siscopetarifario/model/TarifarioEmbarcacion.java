@@ -34,8 +34,9 @@ public class TarifarioEmbarcacion {
     @JoinColumn(name = "id_dia", nullable = false)
     private DiaSemana idDia;
 
-    @Column(name = "id_moneda")
-    private Integer idMoneda;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_moneda", nullable = false)
+    private Moneda idMoneda;
 
     @Column(name = "monto", precision = 10, scale = 2)
     private BigDecimal monto;

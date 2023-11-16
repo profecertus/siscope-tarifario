@@ -41,4 +41,10 @@ public class TarifarioGeneralController {
         return new ResponseEntity<>(tarifarioGeneralService.grabarTarifa(tarifarioGeneralDTO), HttpStatus.OK);
     }
 
+
+    @PostMapping("/saveTarifaEmbarcacion")
+    public  ResponseEntity<TarifarioEmbarcacionDTO> saveTarifaEmbarcacion(@RequestBody TarifarioEmbarcacionDTO tarifarioEmbarcacionDTO){
+        return new ResponseEntity<>(tarifarioGeneralService.grabarTarifaEmbarcacion(tarifarioEmbarcacionDTO), HttpStatus.OK);
+    }
+
 }

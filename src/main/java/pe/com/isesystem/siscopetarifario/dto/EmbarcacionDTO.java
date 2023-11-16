@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class EmbarcacionDTO implements Serializable {
     private Long idEmbarcacion;
     private Long idProveedor;
-    private String nombre;
+    private String nombreEmbarcacion;
     private String numMatricula;
     private Number tonelaje;
     private Boolean estado;
