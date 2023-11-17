@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pe.com.isesystem.siscopetarifario.dto.DiaSemanaDTO;
-import pe.com.isesystem.siscopetarifario.dto.SemanaDTO;
-import pe.com.isesystem.siscopetarifario.dto.TarifarioEmbarcacionDTO;
-import pe.com.isesystem.siscopetarifario.dto.TarifarioGeneralDTO;
+import pe.com.isesystem.siscopetarifario.dto.*;
 import pe.com.isesystem.siscopetarifario.service.TarifarioGeneralService;
 
 import java.util.List;
@@ -28,6 +25,11 @@ public class TarifarioGeneralController {
     @GetMapping("/getAllTarifarioEmbarcacion/{idDiaSemana}")
     public ResponseEntity<List<TarifarioEmbarcacionDTO>> getAllTarifarioEmbarcacion(@PathVariable Long idDiaSemana){
         return new ResponseEntity<>(this.tarifarioGeneralService.getAllTarifarioEmbarcacion(idDiaSemana), HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllTarifarioPlanta/{idDiaSemana}")
+    public ResponseEntity<List<TarifarioPlantaDTO>> getAllTarifarioPlanta(@PathVariable Long idDiaSemana){
+        return new ResponseEntity<>(this.tarifarioGeneralService.getAllTarifarioPlanta(idDiaSemana), HttpStatus.OK);
     }
 
     @PostMapping("/createWeek")

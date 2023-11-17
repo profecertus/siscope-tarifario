@@ -1,6 +1,7 @@
 package pe.com.isesystem.siscopetarifario.dto;
 
 import lombok.*;
+import pe.com.isesystem.siscopetarifario.model.TarifarioPlantaId;
 
 import java.io.Serializable;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class TarifarioPlantaDTO implements Serializable {
+    private TarifarioPlantaIdDTO id;
     private DiaSemanaDTO idDia;
     private PlantaDTO idPlanta;
     private ProveedorDTO idProveedor;
@@ -17,5 +19,5 @@ public class TarifarioPlantaDTO implements Serializable {
     private MonedaDTO idMoneda;
     private Number monto;
     private Boolean estado;
-    private Boolean estadorReg;
+    private Boolean estadoReg;
 }

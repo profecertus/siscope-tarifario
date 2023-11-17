@@ -15,16 +15,16 @@ import java.util.Objects;
 public class TarifarioPlantaId implements Serializable {
     private static final long serialVersionUID = -6695198832952533221L;
     @Column(name = "id_dia", nullable = false)
-    private Integer idDia;
+    private Long idDia;
 
     @Column(name = "id_planta", nullable = false)
-    private Integer idPlanta;
+    private Long idPlanta;
 
     @Column(name = "id_proveedor", nullable = false)
-    private Integer idProveedor;
+    private Long idProveedor;
 
     @Column(name = "id_tipo_servicio", nullable = false)
-    private Integer idTipoServicio;
+    private Long idTipoServicio;
 
     @Override
     public boolean equals(Object o) {

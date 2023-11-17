@@ -5,10 +5,8 @@ import org.springframework.stereotype.Service;
 import pe.com.isesystem.siscopetarifario.model.TarifarioEmbarcacion;
 import pe.com.isesystem.siscopetarifario.model.TarifarioEmbarcacionId;
 import pe.com.isesystem.siscopetarifario.model.TarifarioGeneral;
-import pe.com.isesystem.siscopetarifario.repository.DiaSemanaRepository;
-import pe.com.isesystem.siscopetarifario.repository.MonedaRepository;
-import pe.com.isesystem.siscopetarifario.repository.TarifarioEmbarcacionRepository;
-import pe.com.isesystem.siscopetarifario.repository.TarifarioGeneralRepository;
+import pe.com.isesystem.siscopetarifario.model.TarifarioPlanta;
+import pe.com.isesystem.siscopetarifario.repository.*;
 import pe.com.isesystem.siscopetarifario.dto.*;
 
 import java.util.List;
@@ -18,12 +16,15 @@ public class TarifarioGeneralService {
     private final ModelMapper modelMapper;
     private final TarifarioGeneralRepository tarifarioGeneralRepository;
     private final TarifarioEmbarcacionRepository tarifarioEmbarcacionRepository;
+    private final TarifarioPlantaRepository tarifarioPlantaRepository;
 
     public TarifarioGeneralService(ModelMapper modelMapper, TarifarioGeneralRepository tarifarioGeneralRepository,
-                                   TarifarioEmbarcacionRepository tarifarioEmbarcacionRepository) {
+                                   TarifarioEmbarcacionRepository tarifarioEmbarcacionRepository,
+                                   TarifarioPlantaRepository tarifarioPlantaRepository) {
         this.modelMapper = modelMapper;
         this.tarifarioGeneralRepository = tarifarioGeneralRepository;
         this.tarifarioEmbarcacionRepository = tarifarioEmbarcacionRepository;
+        this.tarifarioPlantaRepository = tarifarioPlantaRepository;
     }
 
     public List<TarifarioGeneralDTO> getAllTarifarioGeneral(Long idDiaSemana) {
@@ -32,9 +33,13 @@ public class TarifarioGeneralService {
     }
 
     public List<TarifarioEmbarcacionDTO> getAllTarifarioEmbarcacion(Long idDiaSemana) {
-        //System.out.println(idDiaSemana);
         List<TarifarioEmbarcacion> lista = this.tarifarioEmbarcacionRepository.findAllById_IdDia( idDiaSemana );
         return lista.stream().map((element) -> modelMapper.map(element, TarifarioEmbarcacionDTO.class)).toList();
+    }
+
+    public List<TarifarioPlantaDTO> getAllTarifarioPlanta(Long idDiaSemana) {
+        List<TarifarioPlanta> lista = this.tarifarioPlantaRepository.findAllById_IdDia( idDiaSemana );
+        return lista.stream().map((element) -> modelMapper.map(element, TarifarioPlantaDTO.class)).toList();
     }
 
     public int cargarProductos(DiaSemanaDTO diaSemanaDTO){

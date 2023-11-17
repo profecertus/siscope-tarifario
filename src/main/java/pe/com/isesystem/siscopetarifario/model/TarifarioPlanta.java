@@ -28,7 +28,7 @@ public class TarifarioPlanta {
     @Column(name = "estado")
     private Boolean estado;
 
-    @Column(name = "estador_reg")
-    private Boolean estadorReg;
+    @Column(name = "estado_reg")
+    private Boolean estadoReg;
 
 }
