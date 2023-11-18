@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 public class PlantaDTO implements Serializable {
     private Long idPlanta;
-    private String nombre;
+    private String nombrePlanta;
     private String ruc;
     private String direccion;
     private String codUbigeo;

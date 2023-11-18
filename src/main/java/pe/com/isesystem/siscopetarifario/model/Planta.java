@@ -15,7 +15,7 @@ public class Planta {
     private Integer id;
 
     @Column(name = "nombre", length = 80)
-    private String nombre;
+    private String nombrePlanta;
 
     @Column(name = "direccion", length = 100)
     private String direccion;
