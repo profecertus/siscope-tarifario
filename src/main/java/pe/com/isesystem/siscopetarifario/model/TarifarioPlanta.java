@@ -19,6 +19,22 @@ public class TarifarioPlanta {
     @JoinColumn(name = "id_dia", nullable = false)
     private DiaSemana idDia;
 
+    @MapsId("idPlanta")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_planta", nullable = false)
+    private Planta idPlanta;
+
+    @MapsId("idProveedor")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_proveedor", nullable = false)
+    private Proveedor idProveedor;
+
+    @MapsId("idTipoServicio")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_tipo_servicio", nullable = false)
+    private TipoServicio idTipoServicio;
+
+
     @Column(name = "id_moneda")
     private Integer idMoneda;
 
