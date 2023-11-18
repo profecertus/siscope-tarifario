@@ -35,8 +35,10 @@ public class TarifarioPlanta {
     private TipoServicio idTipoServicio;
 
 
-    @Column(name = "id_moneda")
-    private Integer idMoneda;
+    @MapsId("idMoneda")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_moneda", nullable = false)
+    private Moneda idMoneda;
 
     @Column(name = "monto", precision = 10, scale = 2)
     private BigDecimal monto;
