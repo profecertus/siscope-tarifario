@@ -31,8 +31,8 @@ public class TarifarioGeneralService {
         this.tarifarioPlantaRepository = tarifarioPlantaRepository;
     }
 
-    public Page<TarifarioGeneralDTO> getAllTarifarioGeneral(Long idDiaSemana) {
-        Pageable pageable = PageRequest.of(0, 10);
+    public Page<TarifarioGeneralDTO> getAllTarifarioGeneral(Long idDiaSemana, int numpag, int totpag) {
+        Pageable pageable = PageRequest.of(numpag, totpag);
         Page<TarifarioGeneral> lista = this.tarifarioGeneralRepository.findAllById_IdDia( idDiaSemana, pageable );
 
         Page<TarifarioGeneralDTO> listaDto = new PageImpl<>(

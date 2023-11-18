@@ -19,9 +19,11 @@ public class TarifarioGeneralController {
     TarifarioGeneralService tarifarioGeneralService;
 
 
-    @GetMapping("/getAllTarifario/{idDiaSemana}")
-    public ResponseEntity<Page<TarifarioGeneralDTO>> getAllTarifario(@PathVariable Long idDiaSemana){
-        return new ResponseEntity<>(this.tarifarioGeneralService.getAllTarifarioGeneral(idDiaSemana), HttpStatus.OK);
+    @GetMapping("/getAllTarifario/{idDiaSemana}/{numpag}/{totpag")
+    public ResponseEntity<Page<TarifarioGeneralDTO>> getAllTarifario(@PathVariable Long idDiaSemana,
+                                                                     @PathVariable int numpag,
+                                                                     @PathVariable int totpag){
+        return new ResponseEntity<>(this.tarifarioGeneralService.getAllTarifarioGeneral(idDiaSemana, numpag, totpag), HttpStatus.OK);
     }
 
     @GetMapping("/getAllTarifarioEmbarcacion/{idDiaSemana}")
