@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 public interface TarifarioPlantaRepository extends JpaRepository<TarifarioPlanta, TarifarioPlantaId> {
     <S extends TarifarioPlanta> List<S> findAllById_IdDia(Long IdDia);
+
+    @Override
+    <S extends TarifarioPlanta> S save(S entity);
 }

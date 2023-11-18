@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.com.isesystem.siscopetarifario.dto.*;
+import pe.com.isesystem.siscopetarifario.model.TarifarioPlanta;
 import pe.com.isesystem.siscopetarifario.service.TarifarioGeneralService;
 
 import java.util.List;
@@ -47,6 +48,11 @@ public class TarifarioGeneralController {
     @PostMapping("/saveTarifaEmbarcacion")
     public  ResponseEntity<TarifarioEmbarcacionDTO> saveTarifaEmbarcacion(@RequestBody TarifarioEmbarcacionDTO tarifarioEmbarcacionDTO){
         return new ResponseEntity<>(tarifarioGeneralService.grabarTarifaEmbarcacion(tarifarioEmbarcacionDTO), HttpStatus.OK);
+    }
+
+    @PostMapping("/saveTarifaPlanta")
+    public  ResponseEntity<TarifarioPlantaDTO> saveTarifaPlanta(@RequestBody TarifarioPlantaDTO tarifarioPlantaDTO){
+        return new ResponseEntity<>(tarifarioGeneralService.grabarTarifaPlanta(tarifarioPlantaDTO), HttpStatus.OK);
     }
 
 }

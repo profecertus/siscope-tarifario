@@ -53,8 +53,14 @@ public class TarifarioGeneralService {
     }
 
     public TarifarioEmbarcacionDTO grabarTarifaEmbarcacion(TarifarioEmbarcacionDTO tarifarioEmbarcacionDTO){
-        TarifarioEmbarcacion te = modelMapper.map(tarifarioEmbarcacionDTO, TarifarioEmbarcacion.class);
-        TarifarioEmbarcacion t = tarifarioEmbarcacionRepository.save( te );
-        return modelMapper.map(t, TarifarioEmbarcacionDTO.class);
+        TarifarioEmbarcacion te = this.modelMapper.map(tarifarioEmbarcacionDTO, TarifarioEmbarcacion.class);
+        TarifarioEmbarcacion t = this.tarifarioEmbarcacionRepository.save( te );
+        return this.modelMapper.map(t, TarifarioEmbarcacionDTO.class);
+    }
+
+    public TarifarioPlantaDTO grabarTarifaPlanta(TarifarioPlantaDTO tarifarioPlantaDTO){
+        TarifarioPlanta tp = this.modelMapper.map(tarifarioPlantaDTO, TarifarioPlanta.class);
+        TarifarioPlanta t = this.tarifarioPlantaRepository.save(tp);
+        return modelMapper.map(t, TarifarioPlantaDTO.class);
     }
 }
