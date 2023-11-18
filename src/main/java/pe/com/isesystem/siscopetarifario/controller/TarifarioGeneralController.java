@@ -19,7 +19,7 @@ public class TarifarioGeneralController {
     TarifarioGeneralService tarifarioGeneralService;
 
 
-    @GetMapping("/getAllTarifario/{idDiaSemana}/{numpag}/{totpag")
+    @GetMapping("/getAllTarifario/{idDiaSemana}/{numpag}/{totpag}")
     public ResponseEntity<Page<TarifarioGeneralDTO>> getAllTarifario(@PathVariable Long idDiaSemana,
                                                                      @PathVariable int numpag,
                                                                      @PathVariable int totpag){
