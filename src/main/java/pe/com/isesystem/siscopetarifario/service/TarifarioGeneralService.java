@@ -1,6 +1,10 @@
 package pe.com.isesystem.siscopetarifario.service;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pe.com.isesystem.siscopetarifario.model.TarifarioEmbarcacion;
 import pe.com.isesystem.siscopetarifario.model.TarifarioEmbarcacionId;
@@ -27,9 +31,15 @@ public class TarifarioGeneralService {
         this.tarifarioPlantaRepository = tarifarioPlantaRepository;
     }
 
-    public List<TarifarioGeneralDTO> getAllTarifarioGeneral(Long idDiaSemana) {
-        List<TarifarioGeneral> lista = this.tarifarioGeneralRepository.findAllById_IdDia( idDiaSemana );
-        return lista.stream().map((element) -> modelMapper.map(element, TarifarioGeneralDTO.class)).toList();
+    public Page<TarifarioGeneralDTO> getAllTarifarioGeneral(Long idDiaSemana) {
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<TarifarioGeneral> lista = this.tarifarioGeneralRepository.findAllById_IdDia( idDiaSemana, pageable );
+
+        Page<TarifarioGeneralDTO> listaDto = new PageImpl<>(
+                lista.stream().map((element) -> modelMapper.map(element, TarifarioGeneralDTO.class)).toList(),
+                lista.getPageable(),
+                lista.getTotalElements());
+        return listaDto;
     }
 
     public List<TarifarioEmbarcacionDTO> getAllTarifarioEmbarcacion(Long idDiaSemana) {

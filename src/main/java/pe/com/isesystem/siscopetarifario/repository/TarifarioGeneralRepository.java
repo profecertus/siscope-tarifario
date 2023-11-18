@@ -1,5 +1,8 @@
 package pe.com.isesystem.siscopetarifario.repository;
 
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +16,9 @@ import java.util.List;
 
 @Repository
 public interface TarifarioGeneralRepository extends JpaRepository<TarifarioGeneral, TarifarioGeneralId> {
-    <S extends TarifarioGeneral> List<S> findAllById_IdDia(Long IdDia);
+    //<S extends TarifarioGeneral> List<S> findAllById_IdDia(Long IdDia);
+
+    <S extends TarifarioGeneral> Page<S> findAllById_IdDia(Long IdDia, Pageable pageable);
 
     @Override
     <S extends TarifarioGeneral> S save(S entity);

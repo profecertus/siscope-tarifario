@@ -1,6 +1,7 @@
 package pe.com.isesystem.siscopetarifario.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class TarifarioGeneralController {
 
 
     @GetMapping("/getAllTarifario/{idDiaSemana}")
-    public ResponseEntity<List<TarifarioGeneralDTO>> getAllTarifario(@PathVariable Long idDiaSemana){
+    public ResponseEntity<Page<TarifarioGeneralDTO>> getAllTarifario(@PathVariable Long idDiaSemana){
         return new ResponseEntity<>(this.tarifarioGeneralService.getAllTarifarioGeneral(idDiaSemana), HttpStatus.OK);
     }
 
