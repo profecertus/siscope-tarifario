@@ -13,7 +13,7 @@ public class CamaraDTO implements Serializable {
     private String placa;
     private String marca;
     private String modelo;
-    private Long idProveedor;
+    private ProveedorDTO idProveedor;
     private Boolean estado;
     private Boolean estadoReg;
 }
