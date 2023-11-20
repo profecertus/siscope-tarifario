@@ -26,7 +26,7 @@ public class TarifarioGeneralId implements Serializable {
     private TipoServicio idTipoServicio;
 
     @Column(name = "id_dia", nullable = false)
-    private Integer idDia;
+    private Long idDia;
 
     @Override
     public boolean equals(Object o) {
