@@ -11,7 +11,7 @@ import lombok.Setter;
 public class DiaSemana {
     @Id
     @Column(name = "id_dia", nullable = false)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_semana")

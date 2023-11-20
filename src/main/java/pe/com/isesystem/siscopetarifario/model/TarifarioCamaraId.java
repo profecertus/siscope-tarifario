@@ -1,20 +1,17 @@
 package pe.com.isesystem.siscopetarifario.model;
 
+import lombok.*;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.*;
 import org.hibernate.Hibernate;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@Embeddable
 @Getter
 @Setter
-@ToString(onlyExplicitlyIncluded = true)
-@Embeddable
 public class TarifarioCamaraId implements Serializable {
     private static final long serialVersionUID = 8262075948424358027L;
     @Column(name = "cod_ubigeo", nullable = false, length = 10)
