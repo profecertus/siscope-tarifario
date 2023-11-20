@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 
 public class TarifarioCamaraIdDTO implements Serializable {
-    private Long idPlanta;
+    private String codUbigeo;
     private String placa;
     private Long idDia;
 }

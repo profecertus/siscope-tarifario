@@ -5,22 +5,18 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
-@ToString(onlyExplicitlyIncluded = true)
-@Entity(name = "TarifarioCamara")
+@Entity
 @Table(name = "tarifario_camara")
 public class TarifarioCamara {
     @EmbeddedId
     private TarifarioCamaraId id;
 
-    @MapsId("idPlanta")
+    @MapsId("codUbigeo")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_planta", nullable = false)
-    private Planta idPlanta;
+    @JoinColumn(name = "cod_ubigeo", nullable = false)
+    private Ubigeo codUbigeo;
 
     @MapsId("placa")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

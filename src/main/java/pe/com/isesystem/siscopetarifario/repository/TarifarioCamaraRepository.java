@@ -4,7 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pe.com.isesystem.siscopetarifario.model.TarifarioCamara;
 import pe.com.isesystem.siscopetarifario.model.TarifarioCamaraId;
-import pe.com.isesystem.siscopetarifario.model.TarifarioPlanta;
 
 import java.util.List;
 

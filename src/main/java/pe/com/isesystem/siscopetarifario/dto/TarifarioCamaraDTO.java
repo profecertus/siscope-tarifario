@@ -9,10 +9,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @Setter
-
 public class TarifarioCamaraDTO implements Serializable {
     private TarifarioCamaraIdDTO id;
-    private PlantaDTO idPlanta;
+    private UbigeoDTO codUbigeo;
     private CamaraDTO placa;
     private DiaSemanaDTO idDia;
     private MonedaDTO idMoneda;
