@@ -20,7 +20,7 @@ public class UbigeoService {
         this.modelMapper = modelMapper;
     }
     public List<UbigeoDTO> getAllUbigeo(Boolean estado){
-        List<Ubigeo> lista = this.ubigeoRepository.findAll();
+        List<Ubigeo> lista = this.ubigeoRepository.getAllUbigeo();
         List<UbigeoDTO> listaDTO = lista.stream().map((element) -> modelMapper.map(element, UbigeoDTO.class)).toList();
         return  listaDTO;
     }

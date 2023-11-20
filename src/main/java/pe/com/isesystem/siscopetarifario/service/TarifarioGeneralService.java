@@ -83,4 +83,5 @@ public class TarifarioGeneralService {
         TarifarioPlanta t = this.tarifarioPlantaRepository.save(tp);
         return modelMapper.map(t, TarifarioPlantaDTO.class);
     }
+
 }
