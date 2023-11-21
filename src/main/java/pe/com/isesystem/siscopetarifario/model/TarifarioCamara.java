@@ -29,7 +29,6 @@ public class TarifarioCamara {
     private DiaSemana idDia;
 
 
-    @MapsId("idMoneda")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "id_moneda", nullable = false)
     private Moneda idMoneda;
