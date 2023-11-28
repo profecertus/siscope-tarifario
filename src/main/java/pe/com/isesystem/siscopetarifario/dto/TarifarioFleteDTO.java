@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 public class TarifarioFleteDTO implements Serializable {
-    private TarifarioGeneralIdDTO id;
+    private TarifarioFleteIdDTO id;
     private DiaSemanaDTO idDia;
     private Long idMoneda;
     private Number monto;
