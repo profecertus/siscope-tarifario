@@ -32,9 +32,9 @@ public class TarifarioGeneralController {
     }
 
 
-    @GetMapping("/getAllTarifarioCamara/{idDiaSemana}")
-    public ResponseEntity<List<TarifarioCamaraDTO>> getAllTarifarioCamara(@PathVariable Long idDiaSemana){
-        return new ResponseEntity<>(this.tarifarioGeneralService.getAllTarifarioCamara(idDiaSemana), HttpStatus.OK);
+    @GetMapping("/getAllTarifarioFlete/{idDiaSemana}")
+    public ResponseEntity<List<TarifarioFleteDTO>> getAllTarifarioFlete(@PathVariable Long idDiaSemana){
+        return new ResponseEntity<>(this.tarifarioGeneralService.getAllTarifarioFlete(idDiaSemana), HttpStatus.OK);
     }
 
     @GetMapping("/getAllTarifarioPlanta/{idDiaSemana}")
@@ -53,9 +53,9 @@ public class TarifarioGeneralController {
         return new ResponseEntity<>(tarifarioGeneralService.grabarTarifa(tarifarioGeneralDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/saveTarifaCamara")
-    public  ResponseEntity<TarifarioCamaraDTO> saveTarifaCamara(@RequestBody TarifarioCamaraDTO tarifarioCamaraDTO){
-        return new ResponseEntity<>(tarifarioGeneralService.grabarTarifaCamara(tarifarioCamaraDTO), HttpStatus.OK);
+    @PostMapping("/saveTarifaFlete")
+    public  ResponseEntity<TarifarioFleteDTO> saveTarifaCamara(@RequestBody TarifarioFleteDTO tarifarioFleteDTO){
+        return new ResponseEntity<>(tarifarioGeneralService.grabarTarifaFlete(tarifarioFleteDTO), HttpStatus.OK);
     }
 
     @PostMapping("/saveTarifaEmbarcacion")
