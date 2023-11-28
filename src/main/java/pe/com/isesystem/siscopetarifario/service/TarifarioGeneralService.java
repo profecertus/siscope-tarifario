@@ -72,8 +72,8 @@ public class TarifarioGeneralService {
         return this.modelMapper.map(t, TarifarioEmbarcacionDTO.class);
     }
 
-    public TarifarioFleteDTO grabarTarifaFlete(TarifarioFleteDTO tarifarioCamaraDTO){
-        TarifarioFlete te = this.modelMapper.map(tarifarioCamaraDTO, TarifarioFlete.class);
+    public TarifarioFleteDTO grabarTarifaFlete(TarifarioFleteDTO tarifarioFleteDTO){
+        TarifarioFlete te = this.modelMapper.map(tarifarioFleteDTO, TarifarioFlete.class);
         TarifarioFlete t = this.tarifarioFleteRepository.save( te );
         return this.modelMapper.map(t, TarifarioFleteDTO.class);
     }
