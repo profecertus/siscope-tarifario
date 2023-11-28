@@ -18,16 +18,16 @@ public class TarifarioGeneralService {
     private final TarifarioGeneralRepository tarifarioGeneralRepository;
     private final TarifarioEmbarcacionRepository tarifarioEmbarcacionRepository;
     private final TarifarioPlantaRepository tarifarioPlantaRepository;
-    private final TarifarioFleteRepository tarifarioCamaraRepository;
+    private final TarifarioFleteRepository tarifarioFleteRepository;
     public TarifarioGeneralService(ModelMapper modelMapper, TarifarioGeneralRepository tarifarioGeneralRepository,
                                    TarifarioEmbarcacionRepository tarifarioEmbarcacionRepository,
                                    TarifarioPlantaRepository tarifarioPlantaRepository,
-                                   TarifarioFleteRepository tarifarioCamaraRepository) {
+                                   TarifarioFleteRepository tarifarioFleteRepository) {
         this.modelMapper = modelMapper;
         this.tarifarioGeneralRepository = tarifarioGeneralRepository;
         this.tarifarioEmbarcacionRepository = tarifarioEmbarcacionRepository;
         this.tarifarioPlantaRepository = tarifarioPlantaRepository;
-        this.tarifarioCamaraRepository = tarifarioCamaraRepository;
+        this.tarifarioFleteRepository = tarifarioFleteRepository;
     }
 
     public Page<TarifarioGeneralDTO> getAllTarifarioGeneral(Long idDiaSemana, int numpag, int totpag) {
@@ -52,7 +52,7 @@ public class TarifarioGeneralService {
     }
 
     public List<TarifarioFleteDTO> getAllTarifarioFlete(Long idDiaSemana) {
-        List<TarifarioFlete> lista = this.tarifarioCamaraRepository.findAllById_IdDia( idDiaSemana );
+        List<TarifarioFlete> lista = this.tarifarioFleteRepository.findAllById_IdDia( idDiaSemana );
         return lista.stream().map((element) -> modelMapper.map(element, TarifarioFleteDTO.class)).toList();
     }
 
@@ -74,7 +74,7 @@ public class TarifarioGeneralService {
 
     public TarifarioFleteDTO grabarTarifaFlete(TarifarioFleteDTO tarifarioCamaraDTO){
         TarifarioFlete te = this.modelMapper.map(tarifarioCamaraDTO, TarifarioFlete.class);
-        TarifarioFlete t = this.tarifarioCamaraRepository.save( te );
+        TarifarioFlete t = this.tarifarioFleteRepository.save( te );
         return this.modelMapper.map(t, TarifarioFleteDTO.class);
     }
 
