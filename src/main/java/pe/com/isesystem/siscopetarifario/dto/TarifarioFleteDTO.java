@@ -13,7 +13,7 @@ public class TarifarioFleteDTO implements Serializable {
     private TarifarioFleteIdDTO id;
     private DiaSemanaDTO idDia;
     private UbigeoDTO codUbigeoDestino;
-    private Long idMoneda;
+    private MonedaDTO idMoneda;
     private Number monto;
     private Boolean estado;
     private Boolean estadoReg;

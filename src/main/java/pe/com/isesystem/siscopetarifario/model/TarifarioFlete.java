@@ -24,8 +24,9 @@ public class TarifarioFlete {
     @JoinColumn(name = "cod_ubigeo_destino", nullable = false)
     private Ubigeo codUbigeoDestino;
 
-    @Column(name = "id_moneda")
-    private Long idMoneda;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_moneda", nullable = false)
+    private Moneda idMoneda;
 
     @Column(name = "monto", precision = 10, scale = 2)
     private BigDecimal monto;
