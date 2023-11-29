@@ -19,6 +19,11 @@ public class TarifarioFlete {
     @JoinColumn(name = "id_dia", nullable = false)
     private DiaSemana idDia;
 
+    @MapsId("codUbigeoDestino")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "cod_ubigeo_destino", nullable = false)
+    private Ubigeo codUbigeoDestino;
+
     @Column(name = "id_moneda")
     private Long idMoneda;
 

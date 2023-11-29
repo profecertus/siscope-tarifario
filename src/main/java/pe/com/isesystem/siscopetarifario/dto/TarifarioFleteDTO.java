@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class TarifarioFleteDTO implements Serializable {
     private TarifarioFleteIdDTO id;
     private DiaSemanaDTO idDia;
+    private UbigeoDTO codUbigeoDestino;
     private Long idMoneda;
     private Number monto;
     private Boolean estado;
