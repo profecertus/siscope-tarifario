@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import pe.com.isesystem.siscopetarifario.model.Semana;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -35,4 +36,5 @@ public interface SemanaRepository extends JpaRepository<Semana, Long> {
 
     @Query(value = "SELECT CAST(TO_CHAR( CURRENT_TIMESTAMP AT TIME ZONE 'America/Lima', 'YYYYMMDD') AS NUMERIC )", nativeQuery = true)
     Long getFecha();
+
 }

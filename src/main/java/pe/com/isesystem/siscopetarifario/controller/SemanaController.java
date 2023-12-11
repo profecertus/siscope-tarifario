@@ -9,6 +9,8 @@ import pe.com.isesystem.siscopetarifario.dto.DiaSemanaDTO;
 import pe.com.isesystem.siscopetarifario.dto.SemanaDTO;
 import pe.com.isesystem.siscopetarifario.service.SemanaService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/semana/v1")
 public class SemanaController {
@@ -35,4 +37,8 @@ public class SemanaController {
         return semanaService.getAllSemana(pag, tot);
     }
 
+    @GetMapping("/getDiasxSemana/{semana}")
+    public List<DiaSemanaDTO> getDiasxSemana(@PathVariable Long semana){
+        return  semanaService.getDiasxSemana(semana);
+    }
 }

@@ -13,9 +13,11 @@ import pe.com.isesystem.siscopetarifario.model.Semana;
 import pe.com.isesystem.siscopetarifario.repository.DiaSemanaRepository;
 import pe.com.isesystem.siscopetarifario.repository.SemanaRepository;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SemanaService {
@@ -89,4 +91,14 @@ public class SemanaService {
             return new DiaSemanaDTO();
     }
 
+    public List<DiaSemanaDTO> getDiasxSemana(Long semana){
+        try {
+            List<DiaSemana> dias = diaSemanaRepository.getAllDaysFromWeek(semana);
+            return dias.stream().map((element) -> modelMapper.map(element, DiaSemanaDTO.class)).toList();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            System.out.println(e.getStackTrace());
+        }
+        return null;
+    }
 }
