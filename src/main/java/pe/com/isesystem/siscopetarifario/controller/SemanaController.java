@@ -26,6 +26,11 @@ public class SemanaController {
     public ResponseEntity<SemanaDTO> getWeekforDate(@PathVariable String fecha ){
         return new ResponseEntity<>(semanaService.semanaDeLaFecha(fecha), HttpStatus.OK);
     }
+	
+	@GetMapping("/getDiaSemana/{fecha}")
+    public ResponseEntity<SemanaDTO> getWeekforDate(@PathVariable Long fecha ){
+        return new ResponseEntity<>(semanaService.getDiaSemana(fecha), HttpStatus.OK);
+    }
 
     @GetMapping("/semanaActual")
     public ResponseEntity<DiaSemanaDTO> getSemanaActual(){
