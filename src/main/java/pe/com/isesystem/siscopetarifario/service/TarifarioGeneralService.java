@@ -84,4 +84,9 @@ public class TarifarioGeneralService {
         return modelMapper.map(t, TarifarioPlantaDTO.class);
     }
 
+    public TarifarioFleteDTO getFletexDia(String ubigeoDestino, Long dia){
+        TarifarioFlete tf = this.tarifarioFleteRepository.findById_IdDiaAndAndId_CodUbigeoDestino(dia, ubigeoDestino);
+        return modelMapper.map(tf, TarifarioFleteDTO.class);
+    }
+
 }

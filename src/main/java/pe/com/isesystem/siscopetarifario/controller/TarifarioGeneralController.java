@@ -68,4 +68,9 @@ public class TarifarioGeneralController {
         return new ResponseEntity<>(tarifarioGeneralService.grabarTarifaPlanta(tarifarioPlantaDTO), HttpStatus.OK);
     }
 
+    @GetMapping("/getTarifaFlete/{ubigeo}/{dia}")
+    public ResponseEntity<TarifarioFleteDTO> getTarifaDestinoxDia(@PathVariable String ubigeo, @PathVariable Long dia){
+        return  new ResponseEntity<>(tarifarioGeneralService.getFletexDia(ubigeo, dia), HttpStatus.OK);
+    }
+
 }
