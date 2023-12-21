@@ -28,12 +28,12 @@ public class TipoCambioController {
     }
 
     @GetMapping("/getCambioDia/{dia}")
-    public ResponseEntity<TipoCambioDTO> getCambioDia(@PathVariable Long dia){
+    public ResponseEntity<BigDecimal> getCambioDia(@PathVariable Long dia){
         return new ResponseEntity<>(this.tipoCambioService.findTipoCambioxFecha(dia), HttpStatus.OK);
     }
 
     @PostMapping("/grabarTipoCambio")
-    public ResponseEntity<TipoCambioDTO> saveTipoCambio(@RequestBody TipoCambioDTO tipoCambioDTO){
+    public ResponseEntity<Integer> saveTipoCambio(@RequestBody TipoCambioDTO tipoCambioDTO){
         return new ResponseEntity<>(this.tipoCambioService.grabarTipoCambio(tipoCambioDTO), HttpStatus.OK);
     }
 

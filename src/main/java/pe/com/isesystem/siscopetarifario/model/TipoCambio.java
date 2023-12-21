@@ -1,9 +1,6 @@
 package pe.com.isesystem.siscopetarifario.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,5 +16,7 @@ public class TipoCambio {
 
     @Column(name = "valor_cambio", precision = 10, scale = 4)
     private BigDecimal valorCambio;
+
+    private String nombreDia;
 
 }

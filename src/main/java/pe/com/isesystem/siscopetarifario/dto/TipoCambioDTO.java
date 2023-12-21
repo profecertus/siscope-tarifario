@@ -12,4 +12,5 @@ import java.math.BigDecimal;
 public class TipoCambioDTO {
     private TipoCambioIdDTO id;
     private BigDecimal valorCambio;
+    private String nombreDia;
 }

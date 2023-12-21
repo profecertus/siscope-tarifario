@@ -1,5 +1,6 @@
 package pe.com.isesystem.siscopetarifario.service;
 
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import pe.com.isesystem.siscopetarifario.dto.TipoCambioDTO;
@@ -28,25 +29,19 @@ public class TipoCambioService {
         return this.tipoCambioRepository.findTipoCambioHoy();
     }
 
-    public TipoCambioDTO findTipoCambioxFecha(Long idDia){
-        //Solo recupero para el tipo 2, dolar.
-        TipoCambioIdDTO tipoCambioIdDTO = new TipoCambioIdDTO(2, idDia);
-        TipoCambioDTO tipoCambioDTO = new TipoCambioDTO();
-        TipoCambioId tipoCambioId = modelMapper.map(tipoCambioIdDTO, TipoCambioId.class);
-        Optional<TipoCambio> tipoCambio = this.tipoCambioRepository.findById(tipoCambioId);
-        if (tipoCambio.isPresent())
-            tipoCambioDTO = modelMapper.map(tipoCambio.get(), TipoCambioDTO.class);
-        return  tipoCambioDTO;
+    public BigDecimal findTipoCambioxFecha(Long idDia){
+        return this.tipoCambioRepository.findByDia(idDia);
     }
 
-    public TipoCambioDTO grabarTipoCambio(TipoCambioDTO tipoCambioDTO){
-        TipoCambio tipoCambio = modelMapper.map(tipoCambioDTO, TipoCambio.class);
-        TipoCambioDTO tipoCambioDTO1 = modelMapper.map(this.tipoCambioRepository.save(tipoCambio), TipoCambioDTO.class);
-        return tipoCambioDTO1;
+    @Transactional
+    public int grabarTipoCambio(TipoCambioDTO tipoCambioDTO){
+        int total = this.tipoCambioRepository.saveCustomized(tipoCambioDTO.getId().getIdMoneda(),
+                tipoCambioDTO.getId().getIdDia(), tipoCambioDTO.getValorCambio());
+        return total;
     }
 
     public List<TipoCambioDTO> getAll(){
-        return this.tipoCambioRepository.findAll().
+        return this.tipoCambioRepository.findAllCustomized().
                 stream().map((element) -> modelMapper.map(element, TipoCambioDTO.class)).
                 collect(Collectors.toList());
     }
