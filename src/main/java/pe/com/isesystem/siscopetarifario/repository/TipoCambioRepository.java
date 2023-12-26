@@ -22,6 +22,14 @@ public interface TipoCambioRepository extends JpaRepository<TipoCambio, TipoCamb
 
     @Modifying
     @Transactional
+    @Query(value = "UPDATE tipo_cambio SET valor_cambio = :monto WHERE id_dia BETWEEN :fechaInicio AND :fechaFin", nativeQuery = true)
+    int actualizaRangoTC(@Param("fechaInicio")Long fechaInicio,
+                         @Param("fechaFin")Long fechaFin,
+                         @Param("monto")BigDecimal monto
+                         );
+
+    @Modifying
+    @Transactional
     @Query(value = "INSERT INTO tipo_cambio (id_moneda, id_dia, valor_cambio) " +
             "VALUES (:idMoneda, :idDia, :monto) " +
             "ON CONFLICT (id_moneda, id_dia) DO UPDATE " +

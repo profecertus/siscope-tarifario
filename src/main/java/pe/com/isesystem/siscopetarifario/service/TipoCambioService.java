@@ -34,6 +34,11 @@ public class TipoCambioService {
     }
 
     @Transactional
+    public int actualizarTipoCambio(Long fechaInicio, Long fechaFin, BigDecimal monto){
+        int total = this.tipoCambioRepository.actualizaRangoTC(fechaInicio, fechaFin, monto);
+        return total;
+    }
+    @Transactional
     public int grabarTipoCambio(TipoCambioDTO tipoCambioDTO){
         int total = this.tipoCambioRepository.saveCustomized(tipoCambioDTO.getId().getIdMoneda(),
                 tipoCambioDTO.getId().getIdDia(), tipoCambioDTO.getValorCambio());
