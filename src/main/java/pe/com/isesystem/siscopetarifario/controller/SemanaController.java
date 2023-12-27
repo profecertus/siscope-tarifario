@@ -43,7 +43,7 @@ public class SemanaController {
     }
 
     @GetMapping("/getDiasxSemana/{semana}")
-    public List<DiaSemanaDTO> getDiasxSemana(@PathVariable Long semana){
+    public List<Object> getDiasxSemana(@PathVariable Long semana){
         return  semanaService.getDiasxSemana(semana);
     }
 }

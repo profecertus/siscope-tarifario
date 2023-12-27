@@ -1,5 +1,7 @@
 package pe.com.isesystem.siscopetarifario.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -13,6 +15,7 @@ import pe.com.isesystem.siscopetarifario.model.Semana;
 import pe.com.isesystem.siscopetarifario.repository.DiaSemanaRepository;
 import pe.com.isesystem.siscopetarifario.repository.SemanaRepository;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -91,14 +94,9 @@ public class SemanaService {
             return new DiaSemanaDTO();
     }
 
-    public List<DiaSemanaDTO> getDiasxSemana(Long semana){
-        try {
-            List<DiaSemana> dias = diaSemanaRepository.getAllDaysFromWeek(semana);
-            return dias.stream().map((element) -> modelMapper.map(element, DiaSemanaDTO.class)).toList();
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-            System.out.println(e.getStackTrace());
-        }
-        return null;
+    public List<Object> getDiasxSemana(Long semana){
+        List<Object> dias = diaSemanaRepository.getAllDaysFromWeek(semana);
+        return dias;
+
     }
 }
