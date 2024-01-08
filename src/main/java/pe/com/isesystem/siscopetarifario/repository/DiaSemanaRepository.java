@@ -28,9 +28,8 @@ public interface DiaSemanaRepository extends JpaRepository<DiaSemana, Long> {
             "FROM dia_semana ds " +
             "INNER JOIN tipo_cambio tc ON ds.id_dia = tc.id_dia " +
             "WHERE ds.id_semana = :numeroSemana " +
-            "  AND ds.id_dia <= CAST(TO_CHAR(CURRENT_TIMESTAMP AT TIME ZONE 'America/Lima', 'YYYYMMDD') AS NUMERIC) " +
             "ORDER BY ds.id_dia;",nativeQuery = true)
     List<Object> getAllDaysFromWeek(@Param("numeroSemana") Long numeroSemana );
-
+    //"  AND ds.id_dia <= CAST(TO_CHAR(CURRENT_TIMESTAMP AT TIME ZONE 'America/Lima', 'YYYYMMDD') AS NUMERIC) " +
 
 }
