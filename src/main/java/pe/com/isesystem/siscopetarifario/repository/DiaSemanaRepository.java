@@ -26,7 +26,7 @@ public interface DiaSemanaRepository extends JpaRepository<DiaSemana, Long> {
             "'valorCambio', tc.valor_cambio " +
             ") AS resultado_json " +
             "FROM dia_semana ds " +
-            "INNER JOIN tipo_cambio tc ON ds.id_dia = tc.id_dia " +
+            "LEFT JOIN tipo_cambio tc ON ds.id_dia = tc.id_dia " +
             "WHERE ds.id_semana = :numeroSemana " +
             "ORDER BY ds.id_dia;",nativeQuery = true)
     List<Object> getAllDaysFromWeek(@Param("numeroSemana") Long numeroSemana );
