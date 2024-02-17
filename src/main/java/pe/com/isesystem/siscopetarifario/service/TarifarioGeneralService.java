@@ -11,6 +11,7 @@ import pe.com.isesystem.siscopetarifario.repository.*;
 import pe.com.isesystem.siscopetarifario.dto.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TarifarioGeneralService {
@@ -44,6 +45,11 @@ public class TarifarioGeneralService {
     public List<TarifarioEmbarcacionDTO> getAllTarifarioEmbarcacion(Long idDiaSemana) {
         List<TarifarioEmbarcacion> lista = this.tarifarioEmbarcacionRepository.findAllById_IdDia( idDiaSemana );
         return lista.stream().map((element) -> modelMapper.map(element, TarifarioEmbarcacionDTO.class)).toList();
+    }
+
+    public Object getTarifarioEmbarcacion(Long idDiaSemana, Long idEmbarcacion, Long idTipoServicio){
+        Object te = this.tarifarioEmbarcacionRepository.getTarifarioEmbarcacion(idDiaSemana, idEmbarcacion, idTipoServicio);
+        return te;
     }
 
     public List<TarifarioPlantaDTO> getAllTarifarioPlanta(Long idDiaSemana) {

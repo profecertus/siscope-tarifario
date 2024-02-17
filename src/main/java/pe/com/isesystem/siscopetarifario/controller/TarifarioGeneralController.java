@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.com.isesystem.siscopetarifario.dto.*;
-import pe.com.isesystem.siscopetarifario.model.TarifarioPlanta;
 import pe.com.isesystem.siscopetarifario.service.TarifarioGeneralService;
 
 import java.util.List;
@@ -29,6 +28,19 @@ public class TarifarioGeneralController {
     @GetMapping("/getAllTarifarioEmbarcacion/{idDiaSemana}")
     public ResponseEntity<List<TarifarioEmbarcacionDTO>> getAllTarifarioEmbarcacion(@PathVariable Long idDiaSemana){
         return new ResponseEntity<>(this.tarifarioGeneralService.getAllTarifarioEmbarcacion(idDiaSemana), HttpStatus.OK);
+    }
+
+    @GetMapping("/getTarifarioEmbarcacion/{idDiaSemana}/{idEmbarcacion}/{idTipoServicio}")
+    public  ResponseEntity<Object> getTarifarioEmbarcacion(@PathVariable Long idDiaSemana,
+                                                                            @PathVariable Long idEmbarcacion,
+                                                                            @PathVariable Long idTipoServicio){
+        Object e = this.tarifarioGeneralService.getTarifarioEmbarcacion(idDiaSemana,
+                idEmbarcacion,
+                idTipoServicio);
+        if(e == null){
+            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(e, HttpStatus.OK);
     }
 
 
