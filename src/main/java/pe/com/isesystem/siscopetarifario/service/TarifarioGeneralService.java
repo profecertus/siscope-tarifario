@@ -57,6 +57,11 @@ public class TarifarioGeneralService {
         return lista.stream().map((element) -> modelMapper.map(element, TarifarioPlantaDTO.class)).toList();
     }
 
+    public Object getTarifarioPlanta(Long idDiaSemana, Long idPlanta, Long idTipoServicio) {
+        Object o = this.tarifarioPlantaRepository.getTarifarioPlanta( idDiaSemana, idPlanta, idTipoServicio );
+        return o;
+    }
+
     public List<TarifarioFleteDTO> getAllTarifarioFlete(Long idDiaSemana) {
         List<TarifarioFlete> lista = this.tarifarioFleteRepository.findAllById_IdDia( idDiaSemana );
         return lista.stream().map((element) -> modelMapper.map(element, TarifarioFleteDTO.class)).toList();

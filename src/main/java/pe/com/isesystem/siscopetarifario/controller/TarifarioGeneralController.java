@@ -32,13 +32,26 @@ public class TarifarioGeneralController {
 
     @GetMapping("/getTarifarioEmbarcacion/{idDiaSemana}/{idEmbarcacion}/{idTipoServicio}")
     public  ResponseEntity<Object> getTarifarioEmbarcacion(@PathVariable Long idDiaSemana,
-                                                                            @PathVariable Long idEmbarcacion,
-                                                                            @PathVariable Long idTipoServicio){
+                                                           @PathVariable Long idEmbarcacion,
+                                                           @PathVariable Long idTipoServicio){
         Object e = this.tarifarioGeneralService.getTarifarioEmbarcacion(idDiaSemana,
                 idEmbarcacion,
                 idTipoServicio);
         if(e == null){
-            return new ResponseEntity<>(e, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(e, HttpStatus.OK);
+    }
+
+    @GetMapping("/getTarifarioPlanta/{idDiaSemana}/{idPlanta}/{idTipoServicio}")
+    public  ResponseEntity<Object> getTarifarioPlanta(@PathVariable Long idDiaSemana,
+                                                           @PathVariable Long idPlanta,
+                                                           @PathVariable Long idTipoServicio){
+        Object e = this.tarifarioGeneralService.getTarifarioPlanta(idDiaSemana,
+                idPlanta,
+                idTipoServicio);
+        if(e == null){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(e, HttpStatus.OK);
     }
